@@ -5,6 +5,7 @@ import Credit from '../Credit/Credit';
 import Debt from '../Debt/Debt';
 
 import "../../css/reset.css";
+import "../../css/styles.css";
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 

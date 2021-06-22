@@ -1,21 +1,29 @@
 import styled from "styled-components"
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 export default function Login() {
+    let history = useHistory();
+
+    function userLogin(event){
+        console.log("oi");
+        event.preventDefault();
+        history.push("/home");
+    }
+
     return (
         <Page>
             <div>
                 <BrandName>My Wallet</BrandName>
                 <UserInteractions>
-                    <form>
-                        <input></input>
-                        <input></input>
-                        <button>Entrar</button>
+                    <form onSubmit={userLogin}>
+                        <input placeholder="E-mail"></input>
+                        <input placeholder="Senha"></input>
+                        <button type="submit">Entrar</button>
                     </form>
-                    <Link className="link"><div>Primeira ves? Cadastre-se!</div></Link>
+                    <Link to="/signin" className="link"><div>Primeira vez? Cadastre-se!</div></Link>
                 </UserInteractions>
             </div>
-        </Page> 
+        </Page>     
     );
 }
 
@@ -28,8 +36,12 @@ const Page = styled.div`
 `;
 
 const BrandName = styled.div`
-    color: white;
+    line-height: 50px;
+    color: #FFFFFF;
     text-align: center;
+    font-family: 'Saira Stencil One', cursive;
+    font-size: 32px;
+    margin-bottom: 24px;    
 `;
 
 const UserInteractions = styled.div`
@@ -38,19 +50,50 @@ const UserInteractions = styled.div`
         align-items: center;
         justify-content: center;
         flex-direction: column;
+        margin-bottom: 36px;
+
+        button {
+        width: 318px;
+        height: 44px;
+        background-color: #A762D6;
+        color: #FFFFFF;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        font-family: 'Raleway', sans-serif;
+        font-weight: bold;
+        font-size: 20px;
+        line-height: 23px;
+        border: 0;
+        }
     }
 
     input {
-        width: 320px;
-        height: 58px;
+        width: 318px;
+        height: 54px;
+        background: #FFFFFF;
+        border-radius: 5px;
+        margin-bottom: 12px;
+        border: 0;
+        padding-left: 15px;
+        font-family: 'Raleway', sans-serif;
+        font-size: 20px;
+        line-height: 23px;
 
+        ::placeholder{
+            
+            color: #000000;
+        }
     }
-    a {
-        text-align: center;
-        width: 100%;
-    }
+
     .link {
-        color: white;
+        font-family: 'Raleway', sans-serif;
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 18px;
+        color: #FFFFFF;
+        text-decoration: none;
 
         div {
             width: 100%;
@@ -58,4 +101,15 @@ const UserInteractions = styled.div`
         }
     }
 
+    @media (max-width: 320px) {
+        input {
+            width: 100%;
+        }
+
+        form {
+            button {
+                width: 100%;
+            } 
+        }
+    }
 `;
