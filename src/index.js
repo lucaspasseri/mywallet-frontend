@@ -1,12 +1,4 @@
 import ReactDOM from 'react-dom';
+import App from '../src/components/App/App';
 
-function App() {
-    return (
-        <div>
-            Bora? Bora!
-		</div>
-    );
-}
-
-const app = App();
-ReactDOM.render(app, document.querySelector(".root"));
+ReactDOM.render(<App />, document.querySelector(".root"));
