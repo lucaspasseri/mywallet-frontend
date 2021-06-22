@@ -1,6 +1,6 @@
 import { Link, useHistory } from "react-router-dom";
 
-import {Page, BrandName, UserInteractions} from '../Styles/Components';
+import {Page, BrandName, UserInteractions } from '../Styles/Components';
 
 export default function Login() {
     let history = useHistory();

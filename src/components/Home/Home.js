@@ -3,7 +3,7 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
-import {Page} from '../Styles/Components';
+import {Page, TopBar} from '../Styles/Components';
 
 export default function Home() {
     return (
@@ -73,28 +73,6 @@ const Actions = styled.div`
     
     @media (max-width: 330px) {
         width: 100vw;
-    }
-`;
-
-const TopBar = styled.div`
-    background-color: #9056BE;
-    color: #FFF;
-    width: 100%;
-    height: 78px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: fixed;
-    padding: 0 24px;
-    top: 0;
-    left: 0;
-
-    div {
-        font-family: 'Raleway', sans-serif;
-        font-weight: bold;
-        font-size: 26px;
-        line-height: 31px;
-        color: #FFFFFF;
     }
 `;
 

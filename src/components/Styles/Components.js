@@ -18,6 +18,13 @@ export const Page = styled.div`
     overflow: auto;
 `;
 
+export const DescentralizedPage = styled.div`
+    background-color: #9056BE; 
+    height: calc(100vh - 78px);
+    overflow: auto;
+    margin-top: 78px;
+`;
+
 export const UserInteractions = styled.div`
     form {
         display: flex;
@@ -85,5 +92,27 @@ export const UserInteractions = styled.div`
                 width: 100vw;
             } 
         }
+    }
+`;
+
+export const TopBar = styled.div`
+    background-color: #9056BE;
+    color: #FFF;
+    width: 100%;
+    height: 78px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    padding: 0 24px;
+    top: 0;
+    left: 0;
+
+    div {
+        font-family: 'Raleway', sans-serif;
+        font-weight: bold;
+        font-size: 26px;
+        line-height: 31px;
+        color: #FFFFFF;
     }
 `;
