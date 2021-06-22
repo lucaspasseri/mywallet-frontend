@@ -1,5 +1,7 @@
 import { Link, useHistory } from "react-router-dom";
 
+import {Page, BrandName, UserInteractions} from '../Styles/Components';
+
 export default function SignUp() {
 
     let history = useHistory();
@@ -10,10 +12,10 @@ export default function SignUp() {
     }
 
     return (
-        <div className="page">  
+        <Page>  
             <div>
-                <div className="brand-name">My Wallet</div>
-                <div className="user-interactions">
+                <BrandName>My Wallet</BrandName>
+                <UserInteractions>
                     <form onSubmit={userLogin}>
                         <input placeholder="Nome"></input>
                         <input placeholder="E-mail"></input>
@@ -22,8 +24,8 @@ export default function SignUp() {
                         <button type="submit">Cadastrar</button>
                     </form>
                     <Link to="/" className="link"><div>Já tem uma conta? Entre agora!</div></Link>
-                </div>
+                </UserInteractions>
             </div>
-		</div>
+		</Page>
     );
 }
