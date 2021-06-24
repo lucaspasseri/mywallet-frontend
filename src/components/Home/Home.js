@@ -3,9 +3,11 @@ import { RiLogoutBoxRLine } from "react-icons/ri";
 import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
 import { Link, useHistory } from "react-router-dom";
 import { useEffect, useContext, useState } from 'react';
+import axios from 'axios';
 
 import UserContext from "../../contexts/UserContext";
 import {Page, TopBar} from '../Styles/Components';
+import Event from "../Event/Event";
 
 export default function Home() {
     let history = useHistory();
@@ -13,6 +15,7 @@ export default function Home() {
     const { user, setUser } = useContext(UserContext);
 
     const [name, setName] = useState("Fulano");
+    const [historic, setHistoric] = useState();
 
     /* useEffect(() => {
         if (localStorage.user) {
@@ -24,15 +27,34 @@ export default function Home() {
     useEffect(() => {
         if(user){
             setName(user.name);
+            getHistoric();
         } else {
             if (localStorage.user) {
                 const userStorage = JSON.parse(localStorage.user);
                 setUser(userStorage);
             } else {
                 history.push("/");
-            }
+            }   
         }
-    }, [user, setUser, history]);
+    }, [setName, user, setUser, history]);   
+
+    function getHistoric(){
+        const config = {
+            headers: {
+              Authorization: `Bearer ${user?.token}`,
+            },
+        };  
+        let url = `http://localhost:4000/historic`;
+        const request = axios.get(url, config);
+
+        request.then(res => {
+            console.log(res.data);
+            setHistoric(res.data);
+        });
+        request.catch(e => {
+            console.log(e);
+        });
+    }
 
     return (
         <Page>  
@@ -42,8 +64,30 @@ export default function Home() {
                     <div><RiLogoutBoxRLine/></div>
                 </TopBar>
                 <Timeline>
-                    <span>Não há registros de</span>
-                    <span>entrada e saída</span> 
+                    {historic?
+                        <div>
+                            <div>
+                                {historic.transactions.map((t,i)=>{
+                                    return <Event 
+                                        key = {i}
+                                        eventDate = {t.eventDate}
+                                        description = {t.description}
+                                        amount = {t.amount}
+                                        categoryId = {t.categoryId}
+                                    />
+                                })}
+                            </div>
+                            <div className="balance">
+                                <div>Saldo</div>
+                                <div>{historic.balance}</div> 
+                            </div>
+                        </div>
+                        :
+                        <>
+                            <span>Não há registros de</span>
+                            <span>entrada e saída</span>
+                        </>
+                    }        
                 </Timeline>
                 <Actions>
                     <Link className="link" to="/credit">
@@ -111,8 +155,8 @@ const Timeline = styled.div`
     width: calc(100vw - 48px);
     height: 446px;
     margin-top: 190px;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     font-family: 'Raleway', sans-serif;
     font-size: 20px;
     line-height: 23px;
@@ -122,7 +166,17 @@ const Timeline = styled.div`
     span{
         display: block;
     }
-
+    > div {
+        height: 100%;
+        border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+        justify-content:space-between;
+    }
+    .balance {
+        display: flex;
+        justify-content: space-between;
+    }
     @media (max-width: 330px) {
         width: 100vw;
     }
