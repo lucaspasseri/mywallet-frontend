@@ -17,13 +17,6 @@ export default function Home() {
     const [name, setName] = useState("Fulano");
     const [historic, setHistoric] = useState();
 
-    /* useEffect(() => {
-        if (localStorage.user) {
-          const userStorage = JSON.parse(localStorage.user);
-          setUser(userStorage);
-        }
-    }); */
-
     useEffect(() => {
         if(user){
             setName(user.name);
