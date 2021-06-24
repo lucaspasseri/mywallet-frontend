@@ -1,16 +1,44 @@
 import styled from 'styled-components';
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
+import { useEffect, useContext, useState } from 'react';
 
+import UserContext from "../../contexts/UserContext";
 import {Page, TopBar} from '../Styles/Components';
 
 export default function Home() {
+    let history = useHistory();
+
+    const { user, setUser } = useContext(UserContext);
+
+    const [name, setName] = useState("Fulano");
+
+    /* useEffect(() => {
+        if (localStorage.user) {
+          const userStorage = JSON.parse(localStorage.user);
+          setUser(userStorage);
+        }
+    }); */
+
+    useEffect(() => {
+        if(user){
+            setName(user.name);
+        } else {
+            if (localStorage.user) {
+                const userStorage = JSON.parse(localStorage.user);
+                setUser(userStorage);
+            } else {
+                history.push("/");
+            }
+        }
+    }, [user, setUser, history]);
+
     return (
         <Page>  
             <div>
                 <TopBar>
-                    <div>Olá, Fulano</div>
+                    <div>Olá, {name}</div>
                     <div><RiLogoutBoxRLine/></div>
                 </TopBar>
                 <Timeline>

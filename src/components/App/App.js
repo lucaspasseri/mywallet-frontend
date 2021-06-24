@@ -1,4 +1,4 @@
-import Login from '../Login/Login'
+import LogIn from '../LogIn/LogIn'
 import SignUp from '../SignUp/SignUp';
 import Home from '../Home/Home';
 import Credit from '../Credit/Credit';
@@ -15,13 +15,15 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 export default function App() {
 
     const [user, setUser] = useState();
+    console.log(user);
+    console.log(localStorage);
 
     return (
         <UserContext.Provider value={{user, setUser}}>
             <GlobalStyle/>
             <BrowserRouter> 
                 <Switch>
-                    <Route path="/" component={Login} exact/>
+                    <Route path="/" component={LogIn} exact/>
                     <Route path="/signup" component={SignUp} exact/>
                     <Route path="/home" component={Home} exact/>
                     <Route path="/credit" component={Credit} exact/>
