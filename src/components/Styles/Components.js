@@ -66,6 +66,10 @@ export const UserInteractions = styled.div`
             
             color: #000000;
         }
+
+        :disabled {
+            filter: brightness(0.93);
+        }
     }
 
     .link {
@@ -80,6 +84,16 @@ export const UserInteractions = styled.div`
             width: 100%;
             text-align: center;
         }
+    }
+    .fake-link {
+        font-family: 'Raleway', sans-serif;
+        font-weight: bold;
+        font-size: 15px;
+        line-height: 18px;
+        color: #FFFFFF;
+        text-decoration: none;
+        width: 100%;
+        text-align: center;
     }
 
     @media (max-width: 330px) {

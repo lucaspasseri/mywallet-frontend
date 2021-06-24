@@ -20,7 +20,7 @@ export default function Login() {
                         <input placeholder="Senha"></input>
                         <button type="submit">Entrar</button>
                     </form>
-                    <Link to="/signin" className="link"><div>Primeira vez? Cadastre-se!</div></Link>
+                    <Link to="/signup" className="link"><div>Primeira vez? Cadastre-se!</div></Link>
                 </UserInteractions>
             </div>
         </Page>     
