@@ -41,12 +41,26 @@ export default function Home() {
         const request = axios.get(url, config);
 
         request.then(res => {
-            console.log(res.data);
             setHistoric(res.data);
         });
         request.catch(e => {
-            console.log(e);
+            alert(e);
         });
+    }
+
+    function logOut(){
+        const config = {
+            headers: {
+              Authorization: `Bearer ${user?.token}`,
+            },
+        };  
+        let url = `http://localhost:4000/session`;
+        const request = axios.delete(url, config);
+
+        request.then(()=> alert("Até a próxima!"));
+        request.catch(e => alert(e));
+        localStorage.clear();
+        history.push("/");
     }
 
     return (
@@ -54,12 +68,12 @@ export default function Home() {
             <div>
                 <TopBar>
                     <div>Olá, {name}</div>
-                    <div><RiLogoutBoxRLine/></div>
+                    <div onClick={logOut}><RiLogoutBoxRLine/></div>
                 </TopBar>
                 <Timeline>
                     {historic?
                         <div>
-                            <div>
+                            <div className="transactions">
                                 {historic.transactions.map((t,i)=>{
                                     return <Event 
                                         key = {i}
@@ -72,7 +86,9 @@ export default function Home() {
                             </div>
                             <div className="balance">
                                 <div>Saldo</div>
-                                <div>{historic.balance}</div> 
+                                <div className={historic.balanceStatus}>
+                                    {historic.balance}
+                                </div> 
                             </div>
                         </div>
                         :
@@ -147,28 +163,52 @@ const Timeline = styled.div`
     flex-direction: column;
     width: calc(100vw - 48px);
     height: 446px;
-    margin-top: 190px;
-    /* justify-content: center;
-    align-items: center; */
+    
+    margin-top: 202px;
     font-family: 'Raleway', sans-serif;
     font-size: 20px;
     line-height: 23px;
-    text-align: center;
     color: #868686;
+    padding: 12px;
 
     span{
         display: block;
     }
     > div {
         height: 100%;
-        border: 1px solid red;
         display: flex;
         flex-direction: column;
         justify-content:space-between;
     }
+    .transactions {
+        overflow: hidden;
+        overflow-y: auto;
+    }   
     .balance {
         display: flex;
         justify-content: space-between;
+        padding-top: 8px;
+
+        div:first-of-type { 
+            font-weight: bold;
+            font-size: 17px;
+            line-height: 20px;
+            color: #000000;
+        }
+        div:last-of-type {
+            font-size: 17px;
+            line-height: 20px;
+        }
+    }
+
+    .positive {
+        color:green;
+    }
+    .negative {
+        color:red;
+    }
+    .zero {
+        color: purple;
     }
     @media (max-width: 330px) {
         width: 100vw;

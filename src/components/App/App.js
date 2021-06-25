@@ -15,8 +15,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 export default function App() {
 
     const [user, setUser] = useState();
-    console.log(user);
-    console.log(localStorage);
 
     return (
         <UserContext.Provider value={{user, setUser}}>

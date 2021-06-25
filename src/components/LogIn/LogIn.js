@@ -75,6 +75,7 @@ export default function LogIn() {
                             value={email} 
                             onChange={e=> setEmail(e.target.value)} 
                             placeholder="E-mail"
+                            type="email"
                             required
                         ></input>
                         <input
@@ -82,6 +83,7 @@ export default function LogIn() {
                             value={password}
                             onChange={e=> setPassword(e.target.value)} 
                             placeholder="Senha"
+                            type="password"
                             required
                         ></input>
                         <button disabled={loading} type="submit">

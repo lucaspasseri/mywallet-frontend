@@ -51,8 +51,6 @@ export default function SignUp() {
                 body
             );
             request.then((response) => {
-                console.log(response.data);
-                console.log(response);
                 setLoading(false);
                 history.push("/");
             });
@@ -80,6 +78,7 @@ export default function SignUp() {
                             value={name} 
                             onChange={e=> setName(e.target.value)} 
                             placeholder="Nome"
+                            type="text"
                             required
                         ></input>
                         <input 
@@ -87,6 +86,7 @@ export default function SignUp() {
                             value={email} 
                             onChange={e=> setEmail(e.target.value)} 
                             placeholder="E-mail"
+                            type="email"
                             required
                         ></input>
                         <input
@@ -94,6 +94,7 @@ export default function SignUp() {
                             value={password}
                             onChange={e=> setPassword(e.target.value)} 
                             placeholder="Senha"
+                            type="password"
                             required
                         ></input>
                         <input
@@ -101,6 +102,7 @@ export default function SignUp() {
                             value={rePassword} 
                             onChange={e=> setRePassword(e.target.value)} 
                             placeholder="Confirme a senha"
+                            type="password"
                             required
                         ></input>
                         <button disabled={loading} type="submit">

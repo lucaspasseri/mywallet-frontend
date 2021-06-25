@@ -26,6 +26,8 @@ export const DescentralizedPage = styled.div`
 `;
 
 export const UserInteractions = styled.div`
+    padding-top: 10px;
+    
     form {
         display: flex;
         align-items: center;
