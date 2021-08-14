@@ -47,7 +47,7 @@ export default function SignUp() {
             };
             setLoading(true);
             const request = axios.post(
-                "http://localhost:4000/signup",
+                `${process.env.REACT_APP_API_BASE_URL}/signup`,
                 body
             );
             request.then((response) => {

@@ -29,6 +29,7 @@ export default function Home() {
                 history.push("/");
             }   
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [setName, user, setUser, history]);   
 
     function getHistoric(){
@@ -37,7 +38,7 @@ export default function Home() {
               Authorization: `Bearer ${user?.token}`,
             },
         };  
-        let url = `http://localhost:4000/historic`;
+        let url = `${process.env.REACT_APP_API_BASE_URL}/historic`;
         const request = axios.get(url, config);
 
         request.then(res => {
@@ -54,7 +55,7 @@ export default function Home() {
               Authorization: `Bearer ${user?.token}`,
             },
         };  
-        let url = `http://localhost:4000/session`;
+        let url = `${process.env.REACT_APP_API_BASE_URL}/session`;
         const request = axios.delete(url, config);
 
         request.then(()=> alert("Até a próxima!"));

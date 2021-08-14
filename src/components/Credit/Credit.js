@@ -50,7 +50,7 @@ export default function Credit() {
             amount: correctAmount,
             description
         }; 
-        const url = `http://localhost:4000/historic/c`;
+        const url = `${process.env.REACT_APP_API_BASE_URL}/historic/c`;
 
         setLoading(true);
         const request = axios.post(url, body, config);

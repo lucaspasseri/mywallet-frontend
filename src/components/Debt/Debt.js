@@ -52,7 +52,7 @@ export default function Debt() {
             amount: correctAmount,
             description
         }; 
-        const url = `http://localhost:4000/historic/d`;
+        const url = `${process.env.REACT_APP_API_BASE_URL}/historic/d`;
         
         setLoading(true);
         const request = axios.post(url, body, config);
