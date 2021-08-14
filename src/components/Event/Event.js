@@ -1,28 +1,39 @@
 import styled from "styled-components";
 import dayjs from "dayjs";
-import 'dayjs/locale/pt-br';
+import "dayjs/locale/pt-br";
+import React from "react";
+import PropTypes from "prop-types";
 
-export default function Event({eventDate, description, amount, categoryId}){
+Event.propTypes = {
+	eventDate: PropTypes.object,
+	description: PropTypes.string,
+	amount: PropTypes.number,
+	categoryId: PropTypes.number
+};
 
-    const eventShow = dayjs(Date(eventDate)).format('DD/MM');
+export default function Event(props){
+
+	const {eventDate, description, amount, categoryId} = props;
+
+	const eventShow = dayjs(Date(eventDate)).format("DD/MM");
     
-    const bigDescription = description.length > 20? "big":"normal";
+	const bigDescription = description.length > 20? "big":"normal";
 
-    const sAmount = String(amount);
-    let integerPart = sAmount.substring(0,sAmount.length-2);
-    if(integerPart===""){
-        integerPart="0";
-    }
-    const decimalPart = sAmount.substring(sAmount.length-2, sAmount.length); 
-    const amountShow = integerPart+","+decimalPart;
+	const sAmount = String(amount);
+	let integerPart = sAmount.substring(0,sAmount.length-2);
+	if(integerPart===""){
+		integerPart="0";
+	}
+	const decimalPart = sAmount.substring(sAmount.length-2, sAmount.length); 
+	const amountShow = integerPart+","+decimalPart;
 
-    return(
-        <Container category={categoryId}>
-            <div className="date">{eventShow}</div>
-            <div className={bigDescription==="big"?"text big-text":"text"} big={bigDescription}>{description}</div>
-            <div className="amount">{amountShow}</div>  
-        </Container>
-    );
+	return(
+		<Container category={categoryId}>
+			<div className="date">{eventShow}</div>
+			<div className={bigDescription==="big"?"text big-text":"text"} big={bigDescription}>{description}</div>
+			<div className="amount">{amountShow}</div>  
+		</Container>
+	);
 }
 
 const Container = styled.div`
