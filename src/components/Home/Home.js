@@ -1,123 +1,125 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 import { RiLogoutBoxRLine } from "react-icons/ri";
 import { FiPlusCircle, FiMinusCircle } from "react-icons/fi";
 import { Link, useHistory } from "react-router-dom";
-import { useEffect, useContext, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useContext, useState } from "react";
+import axios from "axios";
 
 import UserContext from "../../contexts/UserContext";
-import {Page, TopBar} from '../Styles/Components';
+import {Page, TopBar} from "../Styles/Components";
 import Event from "../Event/Event";
 
 export default function Home() {
-    let history = useHistory();
+	let history = useHistory();
 
-    const { user, setUser } = useContext(UserContext);
+	const { user, setUser } = useContext(UserContext);
 
-    const [name, setName] = useState("Fulano");
-    const [historic, setHistoric] = useState();
+	const [name, setName] = useState("Fulano");
+	const [historic, setHistoric] = useState();
 
-    useEffect(() => {
-        if(user){
-            setName(user.name);
-            getHistoric();
-        } else {
-            if (localStorage.user) {
-                const userStorage = JSON.parse(localStorage.user);
-                setUser(userStorage);
-            } else {
-                history.push("/");
-            }   
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [setName, user, setUser, history]);   
+	useEffect(() => {
+		if(user){
+			setName(user.name);
+			getHistoric();
+		} else {
+			if (localStorage.user) {
+				const userStorage = JSON.parse(localStorage.user);
+				setUser(userStorage);
+			} else {
+				history.push("/");
+			}   
+		}
+	}, [setName, user, setUser, history]);   
 
-    function getHistoric(){
-        const config = {
-            headers: {
-              Authorization: `Bearer ${user?.token}`,
-            },
-        };  
-        let url = `${process.env.REACT_APP_API_BASE_URL}/historic`;
-        const request = axios.get(url, config);
+	function getHistoric(){
+		const config = {
+			headers: {
+				Authorization: `Bearer ${user?.token}`,
+			},
+		};  
+		// eslint-disable-next-line no-undef
+		let url = `${process.env.REACT_APP_API_BASE_URL}/historic`;
+		const request = axios.get(url, config);
 
-        request.then(res => {
-            setHistoric(res.data);
-        });
-        request.catch(e => {
-            alert(e);
-        });
-    }
+		request.then(res => {
+			setHistoric(res.data);
+		});
+		request.catch(e => {
+			alert(e);
+		});
+	}
 
-    function logOut(){
-        const config = {
-            headers: {
-              Authorization: `Bearer ${user?.token}`,
-            },
-        };  
-        let url = `${process.env.REACT_APP_API_BASE_URL}/session`;
-        const request = axios.delete(url, config);
+	function logOut(){
+		const config = {
+			headers: {
+				Authorization: `Bearer ${user?.token}`,
+			},
+		};
+		
+		// eslint-disable-next-line no-undef
+		let url = `${process.env.REACT_APP_API_BASE_URL}/session`;
+		const request = axios.delete(url, config);
 
-        request.then(()=> alert("Até a próxima!"));
-        request.catch(e => alert(e));
-        localStorage.clear();
-        history.push("/");
-    }
+		request.then(()=> alert("Até a próxima!"));
+		request.catch(e => alert(e));
+		localStorage.clear();
+		history.push("/");
+	}
 
-    return (
-        <Page>  
-            <div>
-                <TopBar>
-                    <div>Olá, {name}</div>
-                    <div onClick={logOut}><RiLogoutBoxRLine/></div>
-                </TopBar>
-                <Timeline>
-                    {historic?
-                        <div>
-                            <div className="transactions">
-                                {historic.transactions.map((t,i)=>{
-                                    return <Event 
-                                        key = {i}
-                                        eventDate = {t.eventDate}
-                                        description = {t.description}
-                                        amount = {t.amount}
-                                        categoryId = {t.categoryId}
-                                    />
-                                })}
-                            </div>
-                            <div className="balance">
-                                <div>Saldo</div>
-                                <div className={historic.balanceStatus}>
-                                    {historic.balance}
-                                </div> 
-                            </div>
-                        </div>
-                        :
-                        <>
-                            <span>Não há registros de</span>
-                            <span>entrada e saída</span>
-                        </>
-                    }        
-                </Timeline>
-                <Actions>
-                    <Link className="link" to="/credit">
-                        <div className="icon"><FiPlusCircle/></div>
-                        <div>
-                            <span>Nova</span>
-                            <span>entrada</span>
-                        </div>
-                    </Link>
-                    <Link className="link" to="/debt">
-                        <div className="icon"><FiMinusCircle/></div>
-                        <div>
-                            <span>Nova</span>
-                            <span>saida</span>
-                        </div>
-                    </Link>
-                </Actions>
-            </div>
+	return (
+		<Page>  
+			<div>
+				<TopBar>
+					<div>Olá, {name}</div>
+					<div onClick={logOut}><RiLogoutBoxRLine/></div>
+				</TopBar>
+				<Timeline>
+					{historic?
+						<div>
+							<div className="transactions">
+								{historic.transactions.map((t,i)=>{
+									return <Event 
+										key = {i}
+										eventDate = {t.eventDate}
+										description = {t.description}
+										amount = {t.amount}
+										categoryId = {t.categoryId}
+									/>;
+								})}
+							</div>
+							<div className="balance">
+								<div>Saldo</div>
+								<div className={historic.balanceStatus}>
+									{historic.balance}
+								</div> 
+							</div>
+						</div>
+						:
+						<>
+							<span>Não há registros de</span>
+							<span>entrada e saída</span>
+						</>
+					}        
+				</Timeline>
+				<Actions>
+					<Link className="link" to="/credit">
+						<div className="icon"><FiPlusCircle/></div>
+						<div>
+							<span>Nova</span>
+							<span>entrada</span>
+						</div>
+					</Link>
+					<Link className="link" to="/debt">
+						<div className="icon"><FiMinusCircle/></div>
+						<div>
+							<span>Nova</span>
+							<span>saida</span>
+						</div>
+					</Link>
+				</Actions>
+			</div>
 		</Page>
-    );
+	);
 }
 const Actions = styled.div`
     width: calc(100vw - 48px);
