@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/public/logo.png" width="120" alt="my-wallet-logo" />
+  <img src="/public/logo.png" width="300" alt="my-wallet-logo" />
 </p>
 
 # CineFlex
