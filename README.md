@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/public/logo.png" width="300" alt="my-wallet-logo" />
+  <img src="/public/logo.png" width="200" alt="my-wallet-logo" />
 </p>
 
 # CineFlex
@@ -68,6 +68,10 @@ Version Control:<br>
 
 
 ### Deploy
+
+<p align="center">
+  <img src="/public/mywallet-view.png" width="1100" alt="my-wallet-view" />
+</p>
 
 The application layout is available on Vercel:
 <p align="center">
