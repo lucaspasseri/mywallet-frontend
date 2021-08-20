@@ -19,7 +19,7 @@ Before you begin, you will need to have the following tools installed on your ma
 $ git clone https://github.com/lucaspasseri/projeto-mywallet-frontend.git
 
 # Access the project folder cmd/terminal
-$ cd projeto-mywallet-frontend
+$ cd mywallet-frontend
 
 # You will need this API to run the application
 https://my-wallet--api.herokuapp.com
