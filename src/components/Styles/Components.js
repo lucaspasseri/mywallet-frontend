@@ -16,6 +16,7 @@ export const Page = styled.div`
     justify-content: center;
     height: 100vh;
     overflow: auto;
+	border: 1px solid black;
 `;
 
 export const DescentralizedPage = styled.div`
@@ -23,6 +24,7 @@ export const DescentralizedPage = styled.div`
     height: calc(100vh - 78px);
     overflow: auto;
     margin-top: 78px;
+	padding-top: 30px
 `;
 
 export const UserInteractions = styled.div`
