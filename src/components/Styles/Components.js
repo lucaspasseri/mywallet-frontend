@@ -145,4 +145,7 @@ export const TopBar = styled.div`
 		justify-content: flex-end;
 		padding-right: 10px;
 	}
+	.name {
+		padding-left: 10px
+	}
 `;
