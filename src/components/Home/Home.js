@@ -193,9 +193,9 @@ const Timeline = styled.div`
         display: flex;
         justify-content: space-between;
         padding-top: 8px;
+		font-weight: bold;
 
         div:first-of-type { 
-            font-weight: bold;
             font-size: 17px;
             line-height: 20px;
             color: #000000;
