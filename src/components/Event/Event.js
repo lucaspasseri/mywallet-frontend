@@ -40,9 +40,11 @@ const Container = styled.div`
     display: flex;
     width: 100%;
     font-family: 'Raleway', sans-serif;
-    height: 40px;
+    height: 44px;
+	justify-content: space-between;
+
     .date {
-        width: 15%;
+        min-width: 50px;
         font-size: 16px;
         line-height: 19px;
         color: #C6C6C6;
@@ -50,7 +52,7 @@ const Container = styled.div`
         align-items: center;
     }
     .text {
-        width: 55%;
+        width: 100%;
         font-size: 16px;
         line-height: 19px;
         color: #000000;
@@ -68,9 +70,10 @@ const Container = styled.div`
         padding: 4px 6px 0;
     }
     .amount {
-        width: 30%;
+        min-width: 90px;
         font-size: 16px;
         line-height: 19px;
+		padding-right: 5px;
         color:${props => props.category === 1?"green":"red" }; 
         display: flex;
         justify-content:flex-end;
