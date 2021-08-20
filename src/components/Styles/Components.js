@@ -36,7 +36,7 @@ export const UserInteractions = styled.div`
         margin-bottom: 36px;
 
         button {
-        width: 326px;
+        width: 300px;
         height: 44px;
         background-color: #A762D6;
         color: #FFFFFF;
@@ -53,7 +53,7 @@ export const UserInteractions = styled.div`
     }
 
     input {
-        width: 326px;
+        width: 300px;
         height: 54px;
         background: #FFFFFF;
         border-radius: 5px;
@@ -98,7 +98,7 @@ export const UserInteractions = styled.div`
         text-align: center;
     }
 
-    @media (max-width: 330px) {
+    @media (max-width: 300px) {
         input {
             width: 100vw;
         }
@@ -117,12 +117,15 @@ export const TopBar = styled.div`
     width: 100%;
     height: 78px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     position: fixed;
     padding: 0 24px;
     top: 0;
     left: 0;
+	box-shadow: 1px 10px 5px -2px rgba(0,0,0,0.47);
+	-webkit-box-shadow: 1px 10px 5px -2px rgba(0,0,0,0.47);
+	-moz-box-shadow: 1px 10px 5px -2px rgba(0,0,0,0.47);
 
     div {
         font-family: 'Raleway', sans-serif;
@@ -130,5 +133,16 @@ export const TopBar = styled.div`
         font-size: 26px;
         line-height: 31px;
         color: #FFFFFF;
+		display: flex;
+		width: 100vw;
+		
+		@media (min-width: 600px) {
+        width: 560px;
+    	}
     }
+	.logout {
+		display: flex;
+		justify-content: flex-end;
+		padding-right: 10px;
+	}
 `;

@@ -2,7 +2,7 @@
   <img src="/public/logo.png" width="200" alt="my-wallet-logo" />
 </p>
 
-# CineFlex
+# My Wallet
 
 ## About
 <p>

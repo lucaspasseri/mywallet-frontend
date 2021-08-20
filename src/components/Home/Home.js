@@ -70,8 +70,10 @@ export default function Home() {
 		<Page>  
 			<div>
 				<TopBar>
-					<div>Olá, {name}</div>
-					<div onClick={logOut}><RiLogoutBoxRLine/></div>
+					<div>
+						<div className="name">Olá, {name}</div>
+						<div className="logout" onClick={logOut}><RiLogoutBoxRLine/></div>
+					</div>
 				</TopBar>
 				<Timeline>
 					{historic?
@@ -155,8 +157,8 @@ const Actions = styled.div`
             }
         }
     
-    @media (max-width: 330px) {
-        width: 100vw;
+    @media (min-width: 600px) {
+        width: 560px;
     }
 `;
 
@@ -213,7 +215,7 @@ const Timeline = styled.div`
     .zero {
         color: purple;
     }
-    @media (max-width: 330px) {
-        width: 100vw;
+    @media (min-width: 600px) {
+        width: 560px;
     }
 `;
